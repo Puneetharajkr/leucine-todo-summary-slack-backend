@@ -6,7 +6,17 @@ const todoRoutes = require('./routes/todos');
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://todo-summary-slack-frontend.vercel.app'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Routes
