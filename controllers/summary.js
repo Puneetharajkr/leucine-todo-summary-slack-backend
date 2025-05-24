@@ -20,7 +20,7 @@ exports.summarizeTodos = async (req, res) => {
     // Send to Slack
     if (process.env.SLACK_WEBHOOK_URL) {
       try {
-        await axios.post('https://hooks.slack.com/services/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', {
+        await axios.post(process.env.SLACK_WEBHOOK_URL, {
           text: `📝 *Todo Summary*:\n${summary}\n\n*Tasks*:\n${todos.map(t => `• ${t}`).join('\n')}`,
           mrkdwn: true
         });
